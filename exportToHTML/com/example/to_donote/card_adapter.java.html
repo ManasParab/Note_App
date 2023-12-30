@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>card_adapter.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c792ea; font-style: italic;}
+.s1 { color: #c3cee3;}
+.s2 { color: #89ddff;}
+.s3 { color: #717cb4; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#0f111a">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+card_adapter.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">to_donote</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">LayoutInflater</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">View</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">ViewGroup</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">CheckBox</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">TextView</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">annotation</span><span class="s2">.</span><span class="s1">NonNull</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">recyclerview</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">RecyclerView</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">card_adapter </span><span class="s0">extends </span><span class="s1">RecyclerView</span><span class="s2">.</span><span class="s1">Adapter</span><span class="s2">&lt;</span><span class="s1">card_adapter</span><span class="s2">.</span><span class="s1">CardViewHolder</span><span class="s2">&gt; {</span>
+
+    <span class="s0">private final </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">task_card</span><span class="s2">&gt; </span><span class="s1">cardTaskList</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">OnTaskCardClickListener onTaskCardClickListener</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">card_adapter</span><span class="s2">(</span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">task_card</span><span class="s2">&gt; </span><span class="s1">cardTaskList</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">cardTaskList </span><span class="s2">= </span><span class="s1">cardTaskList</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Interface for click events on task_card items</span>
+    <span class="s0">public interface </span><span class="s1">OnTaskCardClickListener </span><span class="s2">{</span>
+        <span class="s0">void </span><span class="s1">onTaskCardClick</span><span class="s2">(</span><span class="s1">task_card taskCard</span><span class="s2">, </span><span class="s0">int </span><span class="s1">position</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setOnTaskCardClickListener</span><span class="s2">(</span><span class="s1">OnTaskCardClickListener listener</span><span class="s2">) {</span>
+        <span class="s1">onTaskCardClickListener </span><span class="s2">= </span><span class="s1">listener</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@NonNull</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">CardViewHolder onCreateViewHolder</span><span class="s2">(</span><span class="s1">@NonNull ViewGroup parent</span><span class="s2">, </span><span class="s0">int </span><span class="s1">viewType</span><span class="s2">) {</span>
+        <span class="s1">View view </span><span class="s2">= </span><span class="s1">LayoutInflater</span><span class="s2">.</span><span class="s1">from</span><span class="s2">(</span><span class="s1">parent</span><span class="s2">.</span><span class="s1">getContext</span><span class="s2">()).</span><span class="s1">inflate</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">task_card</span><span class="s2">, </span><span class="s1">parent</span><span class="s2">, </span><span class="s0">false</span><span class="s2">);</span>
+        <span class="s0">return new </span><span class="s1">CardViewHolder</span><span class="s2">(</span><span class="s1">view</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">onBindViewHolder</span><span class="s2">(</span><span class="s1">@NonNull CardViewHolder holder</span><span class="s2">, </span><span class="s0">int </span><span class="s1">position</span><span class="s2">) {</span>
+        <span class="s1">task_card taskCard </span><span class="s2">= </span><span class="s1">cardTaskList</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">holder</span><span class="s2">.</span><span class="s1">getAdapterPosition</span><span class="s2">());</span>
+
+        <span class="s1">holder</span><span class="s2">.</span><span class="s1">checkBox</span><span class="s2">.</span><span class="s1">setChecked</span><span class="s2">(</span><span class="s1">taskCard</span><span class="s2">.</span><span class="s1">isChecked</span><span class="s2">());</span>
+        <span class="s1">holder</span><span class="s2">.</span><span class="s1">checkBox</span><span class="s2">.</span><span class="s1">setOnCheckedChangeListener</span><span class="s2">((</span><span class="s1">buttonView</span><span class="s2">, </span><span class="s1">isChecked</span><span class="s2">) </span><span class="s1">-&gt; taskCard</span><span class="s2">.</span><span class="s1">setChecked</span><span class="s2">(</span><span class="s1">isChecked</span><span class="s2">));</span>
+
+        <span class="s1">holder</span><span class="s2">.</span><span class="s1">titleTextView</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s1">taskCard</span><span class="s2">.</span><span class="s1">getTitle</span><span class="s2">());</span>
+        <span class="s1">holder</span><span class="s2">.</span><span class="s1">descriptionTextView</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s1">taskCard</span><span class="s2">.</span><span class="s1">getDescription</span><span class="s2">());</span>
+
+        <span class="s3">// Set long click listener for the main card (root view)</span>
+        <span class="s1">holder</span><span class="s2">.</span><span class="s1">itemView</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">card</span><span class="s2">).</span><span class="s1">setOnLongClickListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">View</span><span class="s2">.</span><span class="s1">OnLongClickListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public boolean </span><span class="s1">onLongClick</span><span class="s2">(</span><span class="s1">View v</span><span class="s2">) {</span>
+                <span class="s3">// Handle the click event for the main card</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">onTaskCardClickListener </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                    <span class="s1">onTaskCardClickListener</span><span class="s2">.</span><span class="s1">onTaskCardClick</span><span class="s2">(</span><span class="s1">taskCard</span><span class="s2">, </span><span class="s1">holder</span><span class="s2">.</span><span class="s1">getAdapterPosition</span><span class="s2">());</span>
+                <span class="s2">}</span>
+                <span class="s0">return true</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">holder</span><span class="s2">.</span><span class="s1">titleTextView</span><span class="s2">.</span><span class="s1">setOnLongClickListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">View</span><span class="s2">.</span><span class="s1">OnLongClickListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public boolean </span><span class="s1">onLongClick</span><span class="s2">(</span><span class="s1">View v</span><span class="s2">) {</span>
+                <span class="s3">// Handle the long click event for the titleTextView</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">onTaskCardClickListener </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                    <span class="s1">onTaskCardClickListener</span><span class="s2">.</span><span class="s1">onTaskCardClick</span><span class="s2">(</span><span class="s1">taskCard</span><span class="s2">, </span><span class="s1">holder</span><span class="s2">.</span><span class="s1">getAdapterPosition</span><span class="s2">());</span>
+                <span class="s2">}</span>
+                <span class="s0">return true</span><span class="s2">; </span><span class="s3">// Return true to indicate that the long click event is consumed</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">holder</span><span class="s2">.</span><span class="s1">descriptionTextView</span><span class="s2">.</span><span class="s1">setOnLongClickListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">View</span><span class="s2">.</span><span class="s1">OnLongClickListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public boolean </span><span class="s1">onLongClick</span><span class="s2">(</span><span class="s1">View v</span><span class="s2">) {</span>
+                <span class="s3">// Handle the long click event for the descriptionTextView</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">onTaskCardClickListener </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                    <span class="s1">onTaskCardClickListener</span><span class="s2">.</span><span class="s1">onTaskCardClick</span><span class="s2">(</span><span class="s1">taskCard</span><span class="s2">, </span><span class="s1">holder</span><span class="s2">.</span><span class="s1">getAdapterPosition</span><span class="s2">());</span>
+                <span class="s2">}</span>
+                <span class="s0">return true</span><span class="s2">; </span><span class="s3">// Return true to indicate that the long click event is consumed</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public int </span><span class="s1">getItemCount</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">cardTaskList</span><span class="s2">.</span><span class="s1">size</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static class </span><span class="s1">CardViewHolder </span><span class="s0">extends </span><span class="s1">RecyclerView</span><span class="s2">.</span><span class="s1">ViewHolder </span><span class="s2">{</span>
+        <span class="s1">CheckBox checkBox</span><span class="s2">;</span>
+        <span class="s1">TextView titleTextView</span><span class="s2">;</span>
+        <span class="s1">TextView descriptionTextView</span><span class="s2">;</span>
+
+        <span class="s0">public </span><span class="s1">CardViewHolder</span><span class="s2">(</span><span class="s1">@NonNull View itemView</span><span class="s2">) {</span>
+            <span class="s0">super</span><span class="s2">(</span><span class="s1">itemView</span><span class="s2">);</span>
+            <span class="s1">checkBox </span><span class="s2">= </span><span class="s1">itemView</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">firstCheckBox</span><span class="s2">);</span>
+            <span class="s1">titleTextView </span><span class="s2">= </span><span class="s1">itemView</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">titleTextView</span><span class="s2">);</span>
+            <span class="s1">descriptionTextView </span><span class="s2">= </span><span class="s1">itemView</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">descriptionTextView</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

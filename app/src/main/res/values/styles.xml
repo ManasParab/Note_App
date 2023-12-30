@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">#161C2D</item>
+    </style>
+
+    <style name="NavMenuItemStyle">
+        <item name="android:textColor">#FFFFFF</item> <!-- Set the text color -->
+        <item name="android:textSize">20dp</item> <!-- Set the text size -->
+        <!-- Add more attributes here to style the text as desired -->
+    </style>
+
+
+</resources>

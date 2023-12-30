@@ -1,0 +1,263 @@
+<html>
+<head>
+<title>HomeFragment.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c792ea; font-style: italic;}
+.s1 { color: #c3cee3;}
+.s2 { color: #89ddff;}
+.s3 { color: #c3e88d;}
+.s4 { color: #f78c6c;}
+.s5 { color: #717cb4; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#0f111a">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+HomeFragment.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">to_donote</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">Activity</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">DialogInterface</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Intent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">SharedPreferences</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">DisplayMetrics</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">LayoutInflater</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">View</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">ViewGroup</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Button</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">ImageButton</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Toast</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">activity</span><span class="s2">.</span><span class="s1">result</span><span class="s2">.</span><span class="s1">ActivityResultLauncher</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">activity</span><span class="s2">.</span><span class="s1">result</span><span class="s2">.</span><span class="s1">contract</span><span class="s2">.</span><span class="s1">ActivityResultContracts</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">fragment</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">Fragment</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">recyclerview</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">GridLayoutManager</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">recyclerview</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">RecyclerView</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">google</span><span class="s2">.</span><span class="s1">gson</span><span class="s2">.</span><span class="s1">Gson</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">google</span><span class="s2">.</span><span class="s1">gson</span><span class="s2">.</span><span class="s1">reflect</span><span class="s2">.</span><span class="s1">TypeToken</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">google</span><span class="s2">.</span><span class="s1">android</span><span class="s2">.</span><span class="s1">material</span><span class="s2">.</span><span class="s1">bottomsheet</span><span class="s2">.</span><span class="s1">BottomSheetDialogFragment</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">lang</span><span class="s2">.</span><span class="s1">reflect</span><span class="s2">.</span><span class="s1">Type</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">ArrayList</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Iterator</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">HomeFragment </span><span class="s0">extends </span><span class="s1">Fragment </span><span class="s0">implements </span><span class="s1">card_adapter</span><span class="s2">.</span><span class="s1">OnTaskCardClickListener </span><span class="s2">{</span>
+
+    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">task_card</span><span class="s2">&gt; </span><span class="s1">cardTaskList</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">RecyclerView recyclerView</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">card_adapter cardAdapter</span><span class="s2">;</span>
+
+    <span class="s0">private </span><span class="s1">Button markDone</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">ImageButton add_new</span><span class="s2">, </span><span class="s1">share</span><span class="s2">;</span>
+
+    <span class="s0">private </span><span class="s1">ActivityResultLauncher</span><span class="s2">&lt;</span><span class="s1">Intent</span><span class="s2">&gt; </span><span class="s1">createTaskLauncher </span><span class="s2">= </span><span class="s1">registerForActivityResult</span><span class="s2">(</span>
+            <span class="s0">new </span><span class="s1">ActivityResultContracts</span><span class="s2">.</span><span class="s1">StartActivityForResult</span><span class="s2">(),</span>
+            <span class="s1">result -&gt; </span><span class="s2">{</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">result</span><span class="s2">.</span><span class="s1">getResultCode</span><span class="s2">() == </span><span class="s1">Activity</span><span class="s2">.</span><span class="s1">RESULT_OK</span><span class="s2">) {</span>
+                    <span class="s1">Intent data </span><span class="s2">= </span><span class="s1">result</span><span class="s2">.</span><span class="s1">getData</span><span class="s2">();</span>
+                    <span class="s0">if </span><span class="s2">(</span><span class="s1">data </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                        <span class="s1">String title </span><span class="s2">= </span><span class="s1">data</span><span class="s2">.</span><span class="s1">getStringExtra</span><span class="s2">(</span><span class="s3">&quot;title&quot;</span><span class="s2">);</span>
+                        <span class="s1">String description </span><span class="s2">= </span><span class="s1">data</span><span class="s2">.</span><span class="s1">getStringExtra</span><span class="s2">(</span><span class="s3">&quot;description&quot;</span><span class="s2">);</span>
+                        <span class="s0">int </span><span class="s1">position </span><span class="s2">= </span><span class="s1">data</span><span class="s2">.</span><span class="s1">getIntExtra</span><span class="s2">(</span><span class="s3">&quot;position&quot;</span><span class="s2">, -</span><span class="s4">1</span><span class="s2">);</span>
+
+                        <span class="s0">if </span><span class="s2">(</span><span class="s1">position </span><span class="s2">!= -</span><span class="s4">1 </span><span class="s2">&amp;&amp; </span><span class="s1">position </span><span class="s2">&lt; </span><span class="s1">cardTaskList</span><span class="s2">.</span><span class="s1">size</span><span class="s2">()) {</span>
+                            <span class="s5">// If the position is valid, update the existing task_card with the new data</span>
+                            <span class="s1">task_card taskCard </span><span class="s2">= </span><span class="s1">cardTaskList</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">position</span><span class="s2">);</span>
+                            <span class="s1">taskCard</span><span class="s2">.</span><span class="s1">setTitle</span><span class="s2">(</span><span class="s1">title</span><span class="s2">);</span>
+                            <span class="s1">taskCard</span><span class="s2">.</span><span class="s1">setDescription</span><span class="s2">(</span><span class="s1">description</span><span class="s2">);</span>
+                            <span class="s1">cardAdapter</span><span class="s2">.</span><span class="s1">notifyDataSetChanged</span><span class="s2">();</span>
+                        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                            <span class="s5">// If the position is invalid, it means this is a new task_card</span>
+                            <span class="s5">// Add the data to the ArrayList</span>
+                            <span class="s1">cardTaskList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">task_card</span><span class="s2">(</span><span class="s1">title</span><span class="s2">, </span><span class="s1">description</span><span class="s2">));</span>
+                            <span class="s1">cardAdapter</span><span class="s2">.</span><span class="s1">notifyDataSetChanged</span><span class="s2">();</span>
+                        <span class="s2">}</span>
+
+                        <span class="s5">// Save the updated task list</span>
+                        <span class="s1">saveTasksToSharedPreferences</span><span class="s2">();</span>
+                    <span class="s2">}</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+    <span class="s2">);</span>
+
+    <span class="s0">public </span><span class="s1">HomeFragment</span><span class="s2">() {</span>
+        <span class="s5">// Required empty public constructor</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static </span><span class="s1">HomeFragment newInstance</span><span class="s2">() {</span>
+        <span class="s0">return new </span><span class="s1">HomeFragment</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">View onCreateView</span><span class="s2">(</span><span class="s1">LayoutInflater inflater</span><span class="s2">, </span><span class="s1">ViewGroup container</span><span class="s2">,</span>
+                             <span class="s1">Bundle savedInstanceState</span><span class="s2">) {</span>
+        <span class="s1">View view </span><span class="s2">= </span><span class="s1">inflater</span><span class="s2">.</span><span class="s1">inflate</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">fragment_home</span><span class="s2">, </span><span class="s1">container</span><span class="s2">, </span><span class="s0">false</span><span class="s2">);</span>
+
+        <span class="s1">recyclerView </span><span class="s2">= </span><span class="s1">view</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">recyclerView</span><span class="s2">);</span>
+        <span class="s1">markDone </span><span class="s2">= </span><span class="s1">view</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">markDone</span><span class="s2">);</span>
+        <span class="s1">add_new </span><span class="s2">= </span><span class="s1">view</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">add_new</span><span class="s2">);</span>
+        <span class="s1">share </span><span class="s2">= </span><span class="s1">view</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">share</span><span class="s2">);</span>
+
+        <span class="s5">// Set up RecyclerView with the adapter and GridLayoutManager</span>
+        <span class="s1">cardTaskList </span><span class="s2">= </span><span class="s1">loadTasksFromSharedPreferences</span><span class="s2">();</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">cardTaskList </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">cardTaskList </span><span class="s2">= </span><span class="s1">generateCardItems</span><span class="s2">();</span>
+        <span class="s2">}</span>
+        <span class="s1">cardAdapter </span><span class="s2">= </span><span class="s0">new </span><span class="s1">card_adapter</span><span class="s2">(</span><span class="s1">cardTaskList</span><span class="s2">);</span>
+
+        <span class="s5">// Calculate the dynamic span count based on the screen width and desired number of cards in a row</span>
+        <span class="s0">int </span><span class="s1">screenWidth </span><span class="s2">= </span><span class="s1">getScreenWidth</span><span class="s2">();</span>
+        <span class="s0">int </span><span class="s1">desiredCardsInRow </span><span class="s2">= </span><span class="s4">2</span><span class="s2">; </span><span class="s5">// Change this value to the desired number of cards in a row</span>
+        <span class="s0">int </span><span class="s1">spanCount </span><span class="s2">= </span><span class="s1">screenWidth </span><span class="s2">/ (</span><span class="s1">desiredCardsInRow </span><span class="s2">* </span><span class="s1">getCardWidth</span><span class="s2">());</span>
+
+        <span class="s1">recyclerView</span><span class="s2">.</span><span class="s1">setLayoutManager</span><span class="s2">(</span><span class="s0">new </span><span class="s1">GridLayoutManager</span><span class="s2">(</span><span class="s1">getContext</span><span class="s2">(), </span><span class="s1">spanCount</span><span class="s2">));</span>
+        <span class="s1">recyclerView</span><span class="s2">.</span><span class="s1">setAdapter</span><span class="s2">(</span><span class="s1">cardAdapter</span><span class="s2">);</span>
+
+        <span class="s5">// Set the OnTaskCardClickListener to the cardAdapter</span>
+        <span class="s1">cardAdapter</span><span class="s2">.</span><span class="s1">setOnTaskCardClickListener</span><span class="s2">(</span><span class="s0">this</span><span class="s2">);</span>
+
+        <span class="s1">markDone</span><span class="s2">.</span><span class="s1">setOnClickListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">View</span><span class="s2">.</span><span class="s1">OnClickListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onClick</span><span class="s2">(</span><span class="s1">View v</span><span class="s2">) {</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">hasCheckedTasks</span><span class="s2">()) {</span>
+                    <span class="s1">showMarkDoneBottomSheet</span><span class="s2">();</span>
+                <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                    <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s1">getContext</span><span class="s2">(), </span><span class="s3">&quot;No tasks selected&quot;</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">();</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">add_new</span><span class="s2">.</span><span class="s1">setOnClickListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">View</span><span class="s2">.</span><span class="s1">OnClickListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onClick</span><span class="s2">(</span><span class="s1">View v</span><span class="s2">) {</span>
+                <span class="s5">// Start the CreateTask activity using the ActivityResultLauncher</span>
+                <span class="s1">Intent intent </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Intent</span><span class="s2">(</span><span class="s1">getContext</span><span class="s2">(), </span><span class="s1">CreateTask</span><span class="s2">.</span><span class="s0">class</span><span class="s2">);</span>
+                <span class="s1">createTaskLauncher</span><span class="s2">.</span><span class="s1">launch</span><span class="s2">(</span><span class="s1">intent</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s5">// Set click listener for the &quot;share&quot; button</span>
+        <span class="s1">share</span><span class="s2">.</span><span class="s1">setOnClickListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">View</span><span class="s2">.</span><span class="s1">OnClickListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onClick</span><span class="s2">(</span><span class="s1">View v</span><span class="s2">) {</span>
+                <span class="s1">shareCheckedItems</span><span class="s2">(); </span><span class="s5">// Call the method to share checked tasks</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s0">return </span><span class="s1">view</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">task_card</span><span class="s2">&gt; </span><span class="s1">loadTasksFromSharedPreferences</span><span class="s2">() {</span>
+        <span class="s5">// Implementation to load tasks from SharedPreferences</span>
+        <span class="s1">SharedPreferences sharedPreferences </span><span class="s2">= </span><span class="s1">getContext</span><span class="s2">().</span><span class="s1">getSharedPreferences</span><span class="s2">(</span><span class="s3">&quot;task_list&quot;</span><span class="s2">, </span><span class="s1">Activity</span><span class="s2">.</span><span class="s1">MODE_PRIVATE</span><span class="s2">);</span>
+        <span class="s1">Gson gson </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Gson</span><span class="s2">();</span>
+        <span class="s1">String jsonTasks </span><span class="s2">= </span><span class="s1">sharedPreferences</span><span class="s2">.</span><span class="s1">getString</span><span class="s2">(</span><span class="s3">&quot;tasks&quot;</span><span class="s2">, </span><span class="s0">null</span><span class="s2">);</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">jsonTasks </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">Type type </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TypeToken</span><span class="s2">&lt;</span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">task_card</span><span class="s2">&gt;&gt;() {}.</span><span class="s1">getType</span><span class="s2">();</span>
+            <span class="s0">return </span><span class="s1">gson</span><span class="s2">.</span><span class="s1">fromJson</span><span class="s2">(</span><span class="s1">jsonTasks</span><span class="s2">, </span><span class="s1">type</span><span class="s2">);</span>
+        <span class="s2">}</span>
+        <span class="s0">return null</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">saveTasksToSharedPreferences</span><span class="s2">() {</span>
+        <span class="s5">// Implementation to save tasks to SharedPreferences</span>
+        <span class="s1">SharedPreferences sharedPreferences </span><span class="s2">= </span><span class="s1">getContext</span><span class="s2">().</span><span class="s1">getSharedPreferences</span><span class="s2">(</span><span class="s3">&quot;task_list&quot;</span><span class="s2">, </span><span class="s1">Activity</span><span class="s2">.</span><span class="s1">MODE_PRIVATE</span><span class="s2">);</span>
+        <span class="s1">SharedPreferences</span><span class="s2">.</span><span class="s1">Editor editor </span><span class="s2">= </span><span class="s1">sharedPreferences</span><span class="s2">.</span><span class="s1">edit</span><span class="s2">();</span>
+        <span class="s1">Gson gson </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Gson</span><span class="s2">();</span>
+        <span class="s1">String jsonTasks </span><span class="s2">= </span><span class="s1">gson</span><span class="s2">.</span><span class="s1">toJson</span><span class="s2">(</span><span class="s1">cardTaskList</span><span class="s2">);</span>
+        <span class="s1">editor</span><span class="s2">.</span><span class="s1">putString</span><span class="s2">(</span><span class="s3">&quot;tasks&quot;</span><span class="s2">, </span><span class="s1">jsonTasks</span><span class="s2">);</span>
+        <span class="s1">editor</span><span class="s2">.</span><span class="s1">apply</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private int </span><span class="s1">getScreenWidth</span><span class="s2">() {</span>
+        <span class="s1">DisplayMetrics displayMetrics </span><span class="s2">= </span><span class="s0">new </span><span class="s1">DisplayMetrics</span><span class="s2">();</span>
+        <span class="s1">getActivity</span><span class="s2">().</span><span class="s1">getWindowManager</span><span class="s2">().</span><span class="s1">getDefaultDisplay</span><span class="s2">().</span><span class="s1">getMetrics</span><span class="s2">(</span><span class="s1">displayMetrics</span><span class="s2">);</span>
+        <span class="s0">return </span><span class="s1">displayMetrics</span><span class="s2">.</span><span class="s1">widthPixels</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s5">// This method will give you the width of the card item dynamically</span>
+    <span class="s0">private int </span><span class="s1">getCardWidth</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s2">(</span><span class="s0">int</span><span class="s2">) (</span><span class="s4">120 </span><span class="s2">* </span><span class="s1">getActivity</span><span class="s2">().</span><span class="s1">getResources</span><span class="s2">().</span><span class="s1">getDisplayMetrics</span><span class="s2">().</span><span class="s1">density</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">task_card</span><span class="s2">&gt; </span><span class="s1">generateCardItems</span><span class="s2">() {</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">task_card</span><span class="s2">&gt; </span><span class="s1">itemList </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+        <span class="s1">itemList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">task_card</span><span class="s2">(</span><span class="s3">&quot;(Sample Task)</span><span class="s2">\n</span><span class="s3">College Assignments&quot;</span><span class="s2">, </span><span class="s3">&quot;Advanced Java</span><span class="s2">\n</span><span class="s3">Client Side Scripting</span><span class="s2">\n</span><span class="s3">Operating Systems</span><span class="s2">\n</span><span class="s3">Environmental Studies&quot;</span><span class="s2">));</span>
+        <span class="s1">itemList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">task_card</span><span class="s2">(</span><span class="s3">&quot;(Sample Task)</span><span class="s2">\n</span><span class="s3">Purchase Groceries&quot;</span><span class="s2">, </span><span class="s3">&quot;Biscuits</span><span class="s2">\n</span><span class="s3">Cereal</span><span class="s2">\n</span><span class="s3">Milk</span><span class="s2">\n</span><span class="s3">Eggs&quot;</span><span class="s2">));</span>
+        <span class="s1">itemList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">task_card</span><span class="s2">(</span><span class="s3">&quot;(Sample Task)</span><span class="s2">\n</span><span class="s3">Pay Electricity Bill&quot;</span><span class="s2">, </span><span class="s3">&quot;&quot;</span><span class="s2">));</span>
+
+        <span class="s5">// Add more task_card items if needed</span>
+        <span class="s0">return </span><span class="s1">itemList</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">void </span><span class="s1">removeCheckedItems</span><span class="s2">() {</span>
+        <span class="s1">Iterator</span><span class="s2">&lt;</span><span class="s1">task_card</span><span class="s2">&gt; </span><span class="s1">iterator </span><span class="s2">= </span><span class="s1">cardTaskList</span><span class="s2">.</span><span class="s1">iterator</span><span class="s2">();</span>
+        <span class="s0">while </span><span class="s2">(</span><span class="s1">iterator</span><span class="s2">.</span><span class="s1">hasNext</span><span class="s2">()) {</span>
+            <span class="s1">task_card card </span><span class="s2">= </span><span class="s1">iterator</span><span class="s2">.</span><span class="s1">next</span><span class="s2">();</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">card</span><span class="s2">.</span><span class="s1">isChecked</span><span class="s2">()) {</span>
+                <span class="s1">iterator</span><span class="s2">.</span><span class="s1">remove</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+        <span class="s1">cardAdapter</span><span class="s2">.</span><span class="s1">notifyDataSetChanged</span><span class="s2">();</span>
+
+        <span class="s5">// Save the updated task list</span>
+        <span class="s1">saveTasksToSharedPreferences</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s5">// Method to share checked tasks</span>
+    <span class="s0">public void </span><span class="s1">shareCheckedItems</span><span class="s2">() {</span>
+        <span class="s1">StringBuilder taskDetails </span><span class="s2">= </span><span class="s0">new </span><span class="s1">StringBuilder</span><span class="s2">();</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">task_card card </span><span class="s2">: </span><span class="s1">cardTaskList</span><span class="s2">) {</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">card</span><span class="s2">.</span><span class="s1">isChecked</span><span class="s2">()) {</span>
+                <span class="s1">String title </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">getTitle</span><span class="s2">();</span>
+                <span class="s1">String description </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">getDescription</span><span class="s2">();</span>
+                <span class="s1">taskDetails</span><span class="s2">.</span><span class="s1">append</span><span class="s2">(</span><span class="s1">title</span><span class="s2">).</span><span class="s1">append</span><span class="s2">(</span><span class="s3">&quot; :</span><span class="s2">\n\n </span><span class="s3">&quot;</span><span class="s2">).</span><span class="s1">append</span><span class="s2">(</span><span class="s1">description</span><span class="s2">).</span><span class="s1">append</span><span class="s2">(</span><span class="s3">&quot;</span><span class="s2">\n\n\n</span><span class="s3">&quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">taskDetails</span><span class="s2">.</span><span class="s1">length</span><span class="s2">() &gt; </span><span class="s4">0</span><span class="s2">) {</span>
+            <span class="s1">Intent intent </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Intent</span><span class="s2">(</span><span class="s1">Intent</span><span class="s2">.</span><span class="s1">ACTION_SEND</span><span class="s2">);</span>
+            <span class="s1">intent</span><span class="s2">.</span><span class="s1">setType</span><span class="s2">(</span><span class="s3">&quot;text/plain&quot;</span><span class="s2">);</span>
+            <span class="s1">intent</span><span class="s2">.</span><span class="s1">putExtra</span><span class="s2">(</span><span class="s1">Intent</span><span class="s2">.</span><span class="s1">EXTRA_TEXT</span><span class="s2">, </span><span class="s1">taskDetails</span><span class="s2">.</span><span class="s1">toString</span><span class="s2">());</span>
+            <span class="s1">startActivity</span><span class="s2">(</span><span class="s1">Intent</span><span class="s2">.</span><span class="s1">createChooser</span><span class="s2">(</span><span class="s1">intent</span><span class="s2">, </span><span class="s3">&quot;Share Tasks&quot;</span><span class="s2">));</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s1">getContext</span><span class="s2">(), </span><span class="s3">&quot;Select task to share&quot;</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">();</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s5">// Implement the method to handle click events on task cards</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">onTaskCardClick</span><span class="s2">(</span><span class="s1">task_card taskCard</span><span class="s2">, </span><span class="s0">int </span><span class="s1">position</span><span class="s2">) {</span>
+        <span class="s5">// Handle the click event here</span>
+        <span class="s5">// Redirect to the CreateTask activity with the data of the selected task_card and its position</span>
+        <span class="s1">Intent intent </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Intent</span><span class="s2">(</span><span class="s1">getContext</span><span class="s2">(), </span><span class="s1">CreateTask</span><span class="s2">.</span><span class="s0">class</span><span class="s2">);</span>
+        <span class="s1">intent</span><span class="s2">.</span><span class="s1">putExtra</span><span class="s2">(</span><span class="s3">&quot;title&quot;</span><span class="s2">, </span><span class="s1">taskCard</span><span class="s2">.</span><span class="s1">getTitle</span><span class="s2">());</span>
+        <span class="s1">intent</span><span class="s2">.</span><span class="s1">putExtra</span><span class="s2">(</span><span class="s3">&quot;description&quot;</span><span class="s2">, </span><span class="s1">taskCard</span><span class="s2">.</span><span class="s1">getDescription</span><span class="s2">());</span>
+        <span class="s1">intent</span><span class="s2">.</span><span class="s1">putExtra</span><span class="s2">(</span><span class="s3">&quot;position&quot;</span><span class="s2">, </span><span class="s1">position</span><span class="s2">); </span><span class="s5">// Pass the position here</span>
+        <span class="s1">createTaskLauncher</span><span class="s2">.</span><span class="s1">launch</span><span class="s2">(</span><span class="s1">intent</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s5">// Method to check if there are any tasks checked</span>
+    <span class="s0">private boolean </span><span class="s1">hasCheckedTasks</span><span class="s2">() {</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">task_card card </span><span class="s2">: </span><span class="s1">cardTaskList</span><span class="s2">) {</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">card</span><span class="s2">.</span><span class="s1">isChecked</span><span class="s2">()) {</span>
+                <span class="s0">return true</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+        <span class="s0">return false</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s5">// Method to show the bottom sliding dialog for marking tasks as done</span>
+    <span class="s0">private void </span><span class="s1">showMarkDoneBottomSheet</span><span class="s2">() {</span>
+        <span class="s1">MarkDoneBottomSheetDialogFragment bottomSheetDialogFragment </span><span class="s2">= </span><span class="s0">new </span><span class="s1">MarkDoneBottomSheetDialogFragment</span><span class="s2">();</span>
+        <span class="s1">bottomSheetDialogFragment</span><span class="s2">.</span><span class="s1">show</span><span class="s2">(</span><span class="s1">getChildFragmentManager</span><span class="s2">(), </span><span class="s1">bottomSheetDialogFragment</span><span class="s2">.</span><span class="s1">getTag</span><span class="s2">());</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

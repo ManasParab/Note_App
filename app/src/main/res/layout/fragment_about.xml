@@ -1,0 +1,160 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/navyBlue"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingHorizontal="20dp"
+    >
+
+    <!-- fragment_about.xml (layout file for the AboutFragment) -->
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            >
+
+            <!-- App Logo or Icon (ImageView) -->
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/app_icon"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+
+
+                />
+
+            <!-- App Name (TextView) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="To-Do Note"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#DF8E16"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginBottom="5dp" />
+
+            <!-- App Version (TextView) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Version 1.0"
+                android:textSize="16sp"
+                android:textColor="#DF8E16"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F1F1E6"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="15dp"
+                />
+
+            <!-- Description (TextView) -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Welcome to To-Do Note App ! This app is designed to help you with managing your tasks efficiently without any distractions."
+                android:justificationMode="inter_word"
+                android:textSize="16dp"
+                android:textColor="#0D6B96"
+                android:lineSpacingExtra="4dp"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="15dp"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginBottom="16dp"
+                />
+
+            <!-- Credits or Acknowledgements (TextView) -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This app is developed as a project of my Industrial Training in Mobile Application Development (MAD) for my final year diploma in Information Technology from Saraswati Institute Of Technology, Kharghar."
+                android:textSize="16dp"
+                android:textColor="#F1F1E6"
+                android:justificationMode="inter_word"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginBottom="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Special thanks to Mr. Rahul Gupta Sir and Mr. Sagar Patkar Sir who guided me throughout my industrial training."
+                android:justificationMode="inter_word"
+                android:textSize="18dp"
+                android:textColor="#0D6B96"
+                android:lineSpacingExtra="4dp"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="15dp"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginBottom="17dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F1F1E6"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                />
+
+            <!-- Website Link Button (Button) -->
+            <Button
+                android:id="@+id/btnOpenLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Visit Our Website"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:backgroundTint="#0D6B96"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="12dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F1F1E6"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                />
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="10dp"
+                android:src="@drawable/app_download_qr"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Share the app with friends! Let them scan this QR Code from their device to download."
+                android:justificationMode="inter_word"
+                android:textSize="18dp"
+                android:textColor="#F1F1E6"
+                android:lineSpacingExtra="4dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="15dp"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginBottom="17dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

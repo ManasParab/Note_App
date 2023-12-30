@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>CreateTask.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c792ea; font-style: italic;}
+.s1 { color: #c3cee3;}
+.s2 { color: #89ddff;}
+.s3 { color: #f78c6c;}
+.s4 { color: #717cb4; font-style: italic;}
+.s5 { color: #c3e88d;}
+</style>
+</head>
+<body bgcolor="#0f111a">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+CreateTask.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">to_donote</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Intent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">View</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Button</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Toast</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">google</span><span class="s2">.</span><span class="s1">android</span><span class="s2">.</span><span class="s1">material</span><span class="s2">.</span><span class="s1">textfield</span><span class="s2">.</span><span class="s1">TextInputEditText</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">CreateTask </span><span class="s0">extends </span><span class="s1">AppCompatActivity </span><span class="s2">{</span>
+
+    <span class="s0">private </span><span class="s1">TextInputEditText enterTitle</span><span class="s2">, </span><span class="s1">enterDesc</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">Button discardButton</span><span class="s2">, </span><span class="s1">saveButton</span><span class="s2">;</span>
+    <span class="s0">private int </span><span class="s1">position </span><span class="s2">= -</span><span class="s3">1</span><span class="s2">;</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">Bundle savedInstanceState</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">);</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">activity_create_task</span><span class="s2">);</span>
+
+        <span class="s1">enterTitle </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">enterTitle</span><span class="s2">);</span>
+        <span class="s1">enterDesc </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">enterDesc</span><span class="s2">);</span>
+
+        <span class="s1">discardButton </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">Discard</span><span class="s2">);</span>
+        <span class="s1">saveButton </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">Save</span><span class="s2">);</span>
+
+        <span class="s1">discardButton</span><span class="s2">.</span><span class="s1">setOnClickListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">View</span><span class="s2">.</span><span class="s1">OnClickListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onClick</span><span class="s2">(</span><span class="s1">View view</span><span class="s2">) {</span>
+                <span class="s4">// Finish the activity without saving the data</span>
+                <span class="s1">finish</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">saveButton</span><span class="s2">.</span><span class="s1">setOnClickListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">View</span><span class="s2">.</span><span class="s1">OnClickListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onClick</span><span class="s2">(</span><span class="s1">View view</span><span class="s2">) {</span>
+                <span class="s1">String title </span><span class="s2">= </span><span class="s1">enterTitle</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">toString</span><span class="s2">();</span>
+                <span class="s1">String desc </span><span class="s2">= </span><span class="s1">enterDesc</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">toString</span><span class="s2">();</span>
+
+
+                <span class="s0">if </span><span class="s2">(!</span><span class="s1">title</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">() &amp;&amp; !</span><span class="s1">desc</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">()) {</span>
+                    <span class="s4">// Prepare the result intent and set it as the activity result</span>
+                    <span class="s1">Intent resultIntent </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Intent</span><span class="s2">();</span>
+                    <span class="s1">resultIntent</span><span class="s2">.</span><span class="s1">putExtra</span><span class="s2">(</span><span class="s5">&quot;title&quot;</span><span class="s2">, </span><span class="s1">title</span><span class="s2">);</span>
+                    <span class="s1">resultIntent</span><span class="s2">.</span><span class="s1">putExtra</span><span class="s2">(</span><span class="s5">&quot;description&quot;</span><span class="s2">, </span><span class="s1">desc</span><span class="s2">);</span>
+                    <span class="s1">resultIntent</span><span class="s2">.</span><span class="s1">putExtra</span><span class="s2">(</span><span class="s5">&quot;position&quot;</span><span class="s2">, </span><span class="s1">position</span><span class="s2">);</span>
+
+                    <span class="s1">setResult</span><span class="s2">(</span><span class="s1">RESULT_OK</span><span class="s2">, </span><span class="s1">resultIntent</span><span class="s2">);</span>
+                    <span class="s1">finish</span><span class="s2">();</span>
+                <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                    <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s1">CreateTask</span><span class="s2">.</span><span class="s0">this</span><span class="s2">, </span><span class="s5">&quot;Please enter both title and description&quot;</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">();</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s4">// Check if the Intent has extras (title and description)</span>
+        <span class="s1">Intent intent </span><span class="s2">= </span><span class="s1">getIntent</span><span class="s2">();</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">intent </span><span class="s2">!= </span><span class="s0">null </span><span class="s2">&amp;&amp; </span><span class="s1">intent</span><span class="s2">.</span><span class="s1">hasExtra</span><span class="s2">(</span><span class="s5">&quot;title&quot;</span><span class="s2">) &amp;&amp; </span><span class="s1">intent</span><span class="s2">.</span><span class="s1">hasExtra</span><span class="s2">(</span><span class="s5">&quot;description&quot;</span><span class="s2">) &amp;&amp; </span><span class="s1">intent</span><span class="s2">.</span><span class="s1">hasExtra</span><span class="s2">(</span><span class="s5">&quot;position&quot;</span><span class="s2">)) {</span>
+            <span class="s1">String title </span><span class="s2">= </span><span class="s1">intent</span><span class="s2">.</span><span class="s1">getStringExtra</span><span class="s2">(</span><span class="s5">&quot;title&quot;</span><span class="s2">);</span>
+            <span class="s1">String description </span><span class="s2">= </span><span class="s1">intent</span><span class="s2">.</span><span class="s1">getStringExtra</span><span class="s2">(</span><span class="s5">&quot;description&quot;</span><span class="s2">);</span>
+            <span class="s1">position </span><span class="s2">= </span><span class="s1">intent</span><span class="s2">.</span><span class="s1">getIntExtra</span><span class="s2">(</span><span class="s5">&quot;position&quot;</span><span class="s2">, -</span><span class="s3">1</span><span class="s2">);</span>
+            <span class="s4">// Set the title and description in the TextInputEditText fields</span>
+            <span class="s1">enterTitle</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s1">title</span><span class="s2">);</span>
+            <span class="s1">enterDesc</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s1">description</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>
